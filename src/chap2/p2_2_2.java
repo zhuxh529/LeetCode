@@ -2,15 +2,19 @@ package chap2;
 import linkedList.node;
 
 public class p2_2_2 {
+	public static node x;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] arr={1,2,3,4,5};
 		node l1=build(arr);
 		l1.print();
-		node l2=reverse2(l1,1,4);
+		node sec=l1.next;
+		l1.next=null;
+		node l2=reverseNormal(sec);
+		l2.next=l1;
 		System.out.println();
-		l2.print();
+		x.print();
 		
 	}
 	
@@ -97,6 +101,13 @@ public class p2_2_2 {
 		first.next=n;
 		return prev;
 		
+	}
+	
+	public static node reverseNormal(node head){
+		if(head.next==null) {x=head;return head;}
+		node next=reverseNormal(head.next);
+		next.next=head;
+		return head;
 	}
 	
 	

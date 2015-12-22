@@ -9,7 +9,7 @@ public class p2_2_1 {
 		int[] a2={5,6,4};
 		node a=construct(a1);
 		node b=construct(a2);
-		node c=add2(a,b);
+		node c=add3(a,b);
 		c.print();
 	}
 	
@@ -22,6 +22,16 @@ public class p2_2_1 {
 		}
 		return dum.next;
 		
+	}
+	
+	public static node construct2(int[] arr){
+		node dum=new node(-1);
+		node cur=dum;
+		for(int x: arr){
+			cur.next=new node(x);
+			cur=cur.next;
+		}
+		return dum.next;
 	}
 	
 	public static node add(node a, node b){
@@ -77,6 +87,27 @@ public class p2_2_1 {
 		}
 		if(c!=0) cur.next=new node (c);
 		return dum.next;
+	}
+	
+	public static node add3(node a, node b){
+		node dum=new node(-1);
+		node cur=dum;
+		int c=0;
+		while(!(a==null && b==null)){
+			int av,bv;
+
+			av=a==null?0:a.v;
+			bv=b==null?0:b.v;
+			a=a==null?null:a.next;
+			b=b==null?null:b.next;
+			cur.next=new node((av+bv+c)%10);
+			cur=cur.next;
+			System.out.println(av+"   "+bv);
+			c=(av+bv+c)/10;
+		}
+		if(c>0) cur.next=new node(c);
+		return dum.next;
+		
 	}
 
 }

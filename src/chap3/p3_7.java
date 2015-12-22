@@ -4,8 +4,8 @@ public class p3_7 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("result is :"+ match("*f","adbcdef"));
-
+		System.out.println("result is :"+ method2("ad*f".toCharArray(),"adbcdef".toCharArray(),0,0));
+		
 	}
 	
 	public static boolean match(String a, String b){
@@ -59,4 +59,28 @@ public class p3_7 {
 		
 	}
 
+	
+	
+	public static boolean method2(char[] a, char[] b, int p, int s){
+		
+		if(p<a.length && a[p]=='*'){
+			while(a[p]=='*') p++;
+			if(p==a.length) return true;
+			while(s<b.length && !method2(a,b,p, s)){
+				++s;
+			}
+			System.out.println(s!=b.length);
+
+			return s!=b.length;
+			
+		}
+		else if(p==a.length || s==b.length) {
+			System.out.println(p==a.length && s==b.length);
+			return (p==a.length && s==b.length);}
+		else if(a[p]==b[s] || a[p]=='?'){ 
+			System.out.println(a[p]+"  "+b[s]);
+			return method2(a,b,++p, ++s);}
+		else return false;
+		
+	}
 }
